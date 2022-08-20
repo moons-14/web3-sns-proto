@@ -11,7 +11,8 @@
     "interface:lint": "yarn workspace @crypteen/interface lint",
     "interface:fix-all": "yarn interface:lint --fix && yarn workspace @web2.7-sns/interface format",
     "contract:compile": "yarn workspace @crypteen/contract compile",
-    "contract:test": "yarn workspace @crypteen/contract test"
+    "contract:test": "yarn workspace @crypteen/contract test",
+    "functions:serve": "yarn workspace @crypteen/functions serve"
   },
   "workspaces": {
     "packages": [
