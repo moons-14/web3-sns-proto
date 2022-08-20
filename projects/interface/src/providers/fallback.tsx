@@ -1,4 +1,4 @@
-import { Spinner } from "../components/Elements";
+import { Spinner } from "@/components/Elements";
 
 export const LoadingFallback = () => {
   return (
