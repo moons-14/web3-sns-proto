@@ -2,6 +2,10 @@
   "extends": "@tsconfig/strictest/tsconfig.json",
   "compilerOptions": {
     "target": "ESNext",
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    },
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "skipLibCheck": true,
     "esModuleInterop": false,

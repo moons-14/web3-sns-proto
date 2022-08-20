@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
-import { HomeLayout } from "../components/Layout";
+import { HomeLayout } from "@/components/Layout";
 
 export const AppRoutes = () => {
   return (
