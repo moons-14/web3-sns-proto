@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup --config rollup.config.ts",
     "build:watch": "rollup --config rollup.config.ts -w",
@@ -15,5 +16,8 @@
     "eslint": "^8.22.0",
     "eslint-config-prettier": "^8.5.0",
     "rollup": "^2.78.1"
+  },
+  "dependencies": {
+    "rollup-plugin-dts": "^4.2.2"
   }
 }
