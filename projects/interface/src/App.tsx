@@ -1,6 +1,11 @@
+import { AppProviders } from "./providers";
+import { AppRoutes } from "./routes";
+
 function App() {
   return (
-    <div className="btn btn-block btn-ghost btn-lg text-2xl">Hello World</div>
+    <AppProviders>
+      <AppRoutes />
+    </AppProviders>
   );
 }
 
