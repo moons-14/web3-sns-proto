@@ -12,6 +12,8 @@
     "interface:fix-all": "yarn interface:lint --fix && yarn workspace @web2.7-sns/interface format",
     "contract:compile": "yarn workspace @crypteen/contract compile",
     "contract:test": "yarn workspace @crypteen/contract test",
+    "functions:dev": "run-p functions:watch functions:serve",
+    "functions:watch": "yarn workspace @crypteen/functions build:watch",
     "functions:serve": "yarn workspace @crypteen/functions serve",
     "common:build": "yarn workspace @crypteen/common build"
   },

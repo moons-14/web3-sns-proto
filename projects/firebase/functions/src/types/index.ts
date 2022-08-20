@@ -1,9 +1,6 @@
-export type AuthTokenRequestData = {
-  address: string;
-  signedAt: string;
-};
+import { AuthTokenMessage } from "@crypteen/common";
 
 export type AuthTokenRequest = {
-  data: AuthTokenRequestData;
+  message: AuthTokenMessage;
   signature: string;
 };

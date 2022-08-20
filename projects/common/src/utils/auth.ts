@@ -1,4 +1,8 @@
-import { TypedMessage } from "@metamask/eth-sig-util";
+import {
+  recoverTypedSignature,
+  SignTypedDataVersion,
+  TypedMessage,
+} from "@metamask/eth-sig-util";
 import { AuthTokenMessage } from "../types/auth";
 
 export const AuthTokenRequest = [
@@ -29,4 +33,17 @@ export const createAuthTokenMessageParam = (
     },
     message,
   };
+};
+
+export const recoverAuthTokenMessage = (
+  message: AuthTokenMessage,
+  signature: string
+) => {
+  const typedMessage = createAuthTokenMessageParam(message);
+  const signer = recoverTypedSignature({
+    data: typedMessage,
+    signature,
+    version: SignTypedDataVersion.V4,
+  });
+  return signer;
 };
