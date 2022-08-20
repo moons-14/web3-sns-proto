@@ -5,7 +5,6 @@
     "moduleResolution": "Node",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
-    "baseUrl": "src",
     "outDir": "dist",
     "sourceMap": false,
     "strict": true,
