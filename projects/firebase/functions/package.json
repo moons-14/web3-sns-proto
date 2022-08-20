@@ -1,5 +1,6 @@
 {
-  "name": "functions",
+  "name": "@crypteen/functions",
+  "version": "1.0.0",
   "scripts": {
     "lint": "eslint --ext .js,.ts .",
     "build": "tsc",
@@ -15,6 +16,7 @@
   },
   "main": "lib/index.js",
   "dependencies": {
+    "@metamask/eth-sig-util": "^4.0.1",
     "firebase-admin": "^10.0.2",
     "firebase-functions": "^3.18.0"
   },
