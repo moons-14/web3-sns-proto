@@ -1,0 +1,19 @@
+{
+  "name": "@crypteen/common",
+  "private": true,
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "rollup --config rollup.config.ts",
+    "build:watch": "rollup --config rollup.config.ts -w",
+    "lint-fix": "eslint --cache --fix src/ && prettier --write src/"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.33.1",
+    "@typescript-eslint/parser": "^5.33.1",
+    "eslint": "^8.22.0",
+    "eslint-config-prettier": "^8.5.0",
+    "rollup": "^2.78.1"
+  }
+}
