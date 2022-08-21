@@ -1,11 +1,14 @@
 import { Route, Routes } from "react-router-dom";
 
-import { HomeLayout } from "@/components/Layout";
+import { AuthLayout } from "@/components/Layout";
+import { ConnectWallet } from "@/features/auth";
 
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomeLayout />} />
+      <Route path="/" element={<AuthLayout />}>
+        <Route path="/" element={<ConnectWallet />} />
+      </Route>
     </Routes>
   );
 };
