@@ -15,6 +15,7 @@
     "functions:dev": "run-p functions:watch functions:serve",
     "functions:watch": "yarn workspace @crypteen/functions build:watch",
     "functions:serve": "yarn workspace @crypteen/functions serve",
+    "functions:deploy": "yarn workspace @crypteen/functions deploy",
     "common:build": "yarn workspace @crypteen/common build"
   },
   "workspaces": {
