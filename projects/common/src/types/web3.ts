@@ -11,6 +11,6 @@ export type ChainParameter = Readonly<{
   rpcUrls: string[];
 }>;
 
-export type chains = "astar";
+export type chains = 592;
 
 export type ChainParameters = Record<chains, ChainParameter>;

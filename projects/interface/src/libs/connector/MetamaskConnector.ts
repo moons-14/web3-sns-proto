@@ -1,3 +1,4 @@
+import type { ChainParameter } from "@crypteen/common";
 import detectEthereumProvider from "@metamask/detect-provider";
 import { providers } from "ethers";
 
@@ -31,12 +32,12 @@ export class MetamaskConnector implements Connector {
     eip1193.on("accountsChanged", (accounts) => {
       this._runListeners("accountsChanged")(accounts);
       this._runListeners("signerChanged")(this.getSigner());
-      accounts.length === 0 && this._runListeners("disconnect")(undefined);
+      accounts.length === 0 && this._runListeners("disconnect")();
     });
     eip1193.on("chainChanged", (chainId) =>
       this._runListeners("chainChanged")(parseChainId(chainId))
     );
-    eip1193.on("disconnect", () => this._runListeners("disconnect")(undefined));
+    eip1193.on("disconnect", () => this._runListeners("disconnect")());
   }
 
   private _runListeners<T extends ConnectorEvents>(event: T) {
@@ -57,11 +58,32 @@ export class MetamaskConnector implements Connector {
     return new MetamaskConnector(eip1193, accounts, parseChainId(chainId));
   }
 
+  async switch(param: ChainParameter) {
+    invariant(this.eip1193 && this.eip1193.request);
+    await this.eip1193.request({
+      method: "wallet_addEthereumChain",
+      params: [param],
+    });
+    await this.eip1193.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: param.chainId }],
+    });
+    this._runListeners("chainChanged")(param.chainId);
+  }
+
   on<T extends ConnectorEvents>(
     event: T,
     listener: (e: ConnectorEventValues[T]) => void
   ) {
     this.listeners[event].push(listener);
+    switch (event) {
+      case "accountsChanged":
+        return listener(this.accounts as never);
+      case "chainChanged":
+        return listener(this.chainId as never);
+      case "signerChanged":
+        return listener(this.getSigner() as never);
+    }
   }
 
   getSigner() {

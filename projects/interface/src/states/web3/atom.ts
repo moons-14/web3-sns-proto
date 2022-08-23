@@ -1,15 +1,27 @@
-import { ChainParameter, chainParameters, chains } from "@crypteen/common";
-import { atom, atomFamily } from "recoil";
+import { ChainParameter, chainParameters } from "@crypteen/common";
+import type { Signer } from "ethers";
+import { atom } from "recoil";
 
 import type { Connector } from "@/libs/connector";
 
-export const connectorState = atom<Connector>({ key: "connectorState" });
+export const connectorState = atom<Connector | null>({
+  key: "connectorState",
+  default: null,
+});
 
-export const accountsState = atom<string[]>({ key: "accountsState" });
+export const signerState = atom<Signer | null>({
+  key: "signerState",
+  default: null,
+});
 
-export const chainsState = atomFamily<ChainParameter, chains>({
+export const accountsState = atom<string[]>({
+  key: "accountsState",
+  default: [],
+});
+
+export const currentChainState = atom<ChainParameter>({
   key: "chainsStates",
-  default: (name) => chainParameters[name],
+  default: chainParameters[592],
 });
 
 export const connectingChainIdState = atom<number | null>({
