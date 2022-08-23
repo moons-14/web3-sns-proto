@@ -68,7 +68,6 @@ export class MetamaskConnector implements Connector {
       method: "wallet_switchEthereumChain",
       params: [{ chainId: param.chainId }],
     });
-    this._runListeners("chainChanged")(param.chainId);
   }
 
   on<T extends ConnectorEvents>(

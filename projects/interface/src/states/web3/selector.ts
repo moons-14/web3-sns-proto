@@ -28,6 +28,7 @@ export const currentRpcProviderSelector =
       const provider = new providers.JsonRpcBatchProvider(rpcUrls[0], chainId);
       return provider;
     },
+    dangerouslyAllowMutability: true,
   });
 
 export const signerOrProviderSelector = selector<Signer | providers.Provider>({
@@ -36,6 +37,7 @@ export const signerOrProviderSelector = selector<Signer | providers.Provider>({
     const signer = get(signerState);
     return signer || get(currentRpcProviderSelector);
   },
+  dangerouslyAllowMutability: true,
 });
 
 export const accountSelector = selector<Account[]>({

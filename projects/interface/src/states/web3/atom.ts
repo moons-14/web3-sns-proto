@@ -7,11 +7,13 @@ import type { Connector } from "@/libs/connector";
 export const connectorState = atom<Connector | null>({
   key: "connectorState",
   default: null,
+  dangerouslyAllowMutability: true,
 });
 
 export const signerState = atom<Signer | null>({
   key: "signerState",
   default: null,
+  dangerouslyAllowMutability: true,
 });
 
 export const accountsState = atom<string[]>({
