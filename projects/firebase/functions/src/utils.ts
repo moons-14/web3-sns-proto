@@ -1,4 +1,4 @@
-import { AuthTokenMessage, types } from "@crypteen/common";
+import { AuthDomain, AuthTokenMessage, AuthTypes } from "@crypteen/common";
 import {
   recoverTypedSignature,
   SignTypedDataVersion,
@@ -7,14 +7,11 @@ import {
 
 export const createAuthTokenMessageParam = (
   message: AuthTokenMessage
-): TypedMessage<typeof types> => {
+): TypedMessage<typeof AuthTypes> => {
   return {
-    types,
+    types: AuthTypes,
     primaryType: "AuthTokenRequest",
-    domain: {
-      name: "AuthTokenManager",
-      version: "0.0.1",
-    },
+    domain: AuthDomain,
     message,
   };
 };

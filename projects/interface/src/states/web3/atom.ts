@@ -1,8 +1,7 @@
 import { ChainParameter, chainParameters } from "@crypteen/common";
-import type { Signer } from "ethers";
 import { atom } from "recoil";
 
-import type { Connector } from "@/libs/connector";
+import type { Connector, TypedSigner } from "@/libs/connector";
 
 export const connectorState = atom<Connector | null>({
   key: "connectorState",
@@ -10,7 +9,7 @@ export const connectorState = atom<Connector | null>({
   dangerouslyAllowMutability: true,
 });
 
-export const signerState = atom<Signer | null>({
+export const signerState = atom<TypedSigner | null>({
   key: "signerState",
   default: null,
   dangerouslyAllowMutability: true,

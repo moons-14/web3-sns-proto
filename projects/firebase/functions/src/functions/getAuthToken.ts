@@ -1,8 +1,8 @@
-import { recoverAuthTokenMessage } from "@crypteen/common";
 import { normalize } from "@metamask/eth-sig-util";
 import * as functions from "firebase-functions";
 import { FUNCTION_REGION, SIGNATURE_EXPIRATION } from "../constants";
 import { AuthTokenRequest } from "../types";
+import { recoverAuthTokenMessage } from "../utils";
 import { auth } from "./../firebase";
 
 export const getAuthToken = functions

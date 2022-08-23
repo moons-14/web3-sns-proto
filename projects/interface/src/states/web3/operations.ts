@@ -29,6 +29,7 @@ export const useConnectWallet = () => {
           set(accountsState, []);
           set(connectingChainIdState, null);
         });
+        return connector;
       }
   );
   return connectWallet;

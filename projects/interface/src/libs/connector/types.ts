@@ -1,4 +1,5 @@
 import type { ChainParameter } from "@crypteen/common";
+import type { TypedDataSigner } from "@ethersproject/abstract-signer";
 import type { ethers, Signer } from "ethers";
 
 type EIP1193Events = {
@@ -21,15 +22,17 @@ export type ConnectorEvents =
   | "accountsChanged"
   | "disconnect";
 
+export type TypedSigner = Signer & TypedDataSigner;
+
 export type ConnectorEventValues = {
-  signerChanged: Signer;
+  signerChanged: TypedSigner;
   chainChanged: number;
   accountsChanged: string[];
   disconnect: void;
 };
 
 export interface Connector {
-  getSigner(): Signer | null;
+  getSigner(): TypedSigner | null;
   getAccounts(): string[];
   getChainId(): number | null;
   switch(param: ChainParameter): void | Promise<void>;
