@@ -1,4 +1,4 @@
-import type { ChainParameter } from "@/../../common/dist";
+import type { ChainParameter } from "@crypteen/common";
 import { useRecoilCallback } from "recoil";
 
 import {
@@ -9,12 +9,17 @@ import {
 } from "./atom";
 
 import type { Connector } from "@/libs/connector";
+import { logger } from "@/libs/logger";
 import { curry, invariant } from "@/utils";
 
 export const useConnectWallet = () => {
   const connectWallet = useRecoilCallback(
     ({ set }) =>
       (connector: Connector) => {
+        logger("connect_wallet", {
+          account: connector.getAccounts()[0],
+          chainId: connector.getChainId(),
+        });
         set(connectorState, connector);
         connector.on("signerChanged", curry(set, signerState));
         connector.on("accountsChanged", curry(set, accountsState));
@@ -36,6 +41,10 @@ export const useSwitchChain = () => {
         const connector = snapshot.getLoadable(connectorState).getValue();
         invariant(connector);
         await connector.switch(param);
+        logger("switch_chain", {
+          account: connector.getAccounts()[0],
+          to: connector.getChainId(),
+        });
       }
   );
   return switchChain;

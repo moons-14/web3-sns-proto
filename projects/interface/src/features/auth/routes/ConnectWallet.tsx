@@ -6,8 +6,7 @@ import { useWeb3 } from "@/hooks";
 import { MetamaskConnector } from "@/libs/connector";
 
 export const ConnectWallet = () => {
-  const { connectWallet, accounts, connectingChainId } = useWeb3();
-  console.log(accounts, connectingChainId);
+  const { connectWallet } = useWeb3();
   return (
     <div className="flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Connect Wallet</h1>
@@ -23,8 +22,8 @@ export const ConnectWallet = () => {
           <img src={WalletConnectLogo} className="aspect-square h-10" />
           WalletConnect
         </button>
-        <button className="btn btn-outline justify-start gap-2 pr-12 normal-case">
-          <GlobeAltIcon className="text-neutral aspect-square h-8" />
+        <button className="btn btn-outline text-neutral active:text-neutral-content justify-start gap-2 pr-12 normal-case">
+          <GlobeAltIcon className="aspect-square h-8" />
           BrowserWallet
         </button>
       </div>
