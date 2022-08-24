@@ -5,8 +5,8 @@ import { useOpenAccount } from "../hooks/useOpenAddress";
 export const WalletInfo: React.FC = () => {
   const account = useOpenAccount();
   return (
-    <div className="bg-base-100 flex flex-col items-center gap-2 font-mono">
-      <div className="card w-32 shadow">
+    <div className="flex w-full flex-col items-center gap-2 font-mono">
+      <div className="card w-28 shadow">
         <Avatar
           size="100%"
           square={true}
@@ -14,6 +14,7 @@ export const WalletInfo: React.FC = () => {
           variant="marble"
         />
       </div>
+
       <div className="text-center font-bold">
         {account?.name ? (
           <div className="text-3xl">{account?.name}</div>
