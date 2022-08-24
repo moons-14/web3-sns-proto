@@ -2,7 +2,7 @@ import type { ChainParameter } from "@crypteen/common";
 import { useRecoilCallback } from "recoil";
 
 import {
-  accountsState,
+  addressesState,
   connectingChainIdState,
   connectorState,
   signerState,
@@ -22,11 +22,11 @@ export const useConnectWallet = () => {
         });
         set(connectorState, connector);
         connector.on("signerChanged", curry(set, signerState));
-        connector.on("accountsChanged", curry(set, accountsState));
+        connector.on("accountsChanged", curry(set, addressesState));
         connector.on("chainChanged", curry(set, connectingChainIdState));
         connector.on("disconnect", () => {
           set(signerState, null);
-          set(accountsState, []);
+          set(addressesState, []);
           set(connectingChainIdState, null);
         });
         return connector;
@@ -54,7 +54,7 @@ export const useSwitchChain = () => {
 export const useDisconnect = () => {
   const disconnect = useRecoilCallback(({ set }) => () => {
     set(signerState, null);
-    set(accountsState, []);
+    set(addressesState, []);
     set(connectingChainIdState, null);
   });
   return disconnect;

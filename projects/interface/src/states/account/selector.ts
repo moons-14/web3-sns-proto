@@ -1,15 +1,17 @@
 import { selector } from "recoil";
 
-import { accountSelector } from "../web3";
+import { web3AccountSelector } from "../web3";
 
 import { firebaseUserState } from "./atom";
+import type { Account } from "./types";
 
-export const userSelector = selector({
+export const userSelector = selector<Account>({
   key: "userSelector",
   get: ({ get }) => {
     const user = get(firebaseUserState);
-    const account = get(accountSelector)[0];
+    const account = get(web3AccountSelector)[0];
 
-    return { user, account };
+    return { ...account, user };
   },
+  dangerouslyAllowMutability: true,
 });

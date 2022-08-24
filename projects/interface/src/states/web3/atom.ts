@@ -15,8 +15,8 @@ export const signerState = atom<TypedSigner | null>({
   dangerouslyAllowMutability: true,
 });
 
-export const accountsState = atom<string[]>({
-  key: "accountsState",
+export const addressesState = atom<string[]>({
+  key: "addressesState",
   default: [],
 });
 

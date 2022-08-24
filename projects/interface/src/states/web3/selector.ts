@@ -2,8 +2,8 @@ import { chainParameters, chains } from "@crypteen/common";
 import { providers, Signer } from "ethers";
 import { selector } from "recoil";
 
-import { accountsState, currentChainState, signerState } from "./atom";
-import type { Account } from "./types";
+import { addressesState, currentChainState, signerState } from "./atom";
+import type { Web3Account } from "./types";
 
 export const currentChainIdSelector = selector<chains>({
   key: "currentChainIdSelector",
@@ -40,10 +40,10 @@ export const signerOrProviderSelector = selector<Signer | providers.Provider>({
   dangerouslyAllowMutability: true,
 });
 
-export const accountSelector = selector<Account[]>({
+export const web3AccountSelector = selector<Web3Account[]>({
   key: "accountSelector",
   get: ({ get }) => {
-    const addresses = get(accountsState);
+    const addresses = get(addressesState);
     return addresses.map((address) => ({
       address,
       ellipsisAddress: `${address.slice(0, 6)}...${address.slice(-4)}`,

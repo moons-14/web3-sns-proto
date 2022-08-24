@@ -1,6 +1,6 @@
 import { useRecoilValue } from "recoil";
 
-import { connectingChainIdState } from "./../states/web3/atom";
+import { accountsState, connectingChainIdState } from "./../states/web3/atom";
 
 import {
   accountSelector,
@@ -22,6 +22,7 @@ export const useWeb3 = () => {
   const signerOrProvider = useRecoilValue(signerOrProviderSelector);
   const fetchProvider = useRecoilValue(currentRpcProviderSelector);
   const signer = useRecoilValue(signerState);
+  const addresses = useRecoilValue(accountsState);
   const accounts = useRecoilValue(accountSelector);
   const connectingChainId = useRecoilValue(connectingChainIdState);
   const currentChainId = useRecoilValue(currentChainIdSelector);
@@ -35,6 +36,7 @@ export const useWeb3 = () => {
     signerOrProvider,
     fetchProvider,
     signer,
+    addresses,
     accounts,
     connectingChainId,
     currentChainId,
