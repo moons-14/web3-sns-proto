@@ -1,10 +1,31 @@
 import { useParams } from "react-router-dom";
 
 import { useUser } from "@/states/account";
-import type { Account } from "@/states/web3";
 
-export const useOpenAccount = (): Account => {
+export const useOpenAccount = (): {
+  address: string;
+  ellipsisAddress: string;
+  name: string;
+} | null => {
   const { paramAddress } = useParams();
-  const { accounts } = useUser();
-  const address = paramAddress ? paramAddress : addresses[0] || "";
+  const { address, ellipsisAddress } = useUser();
+  if (paramAddress) {
+    const paramEllipsisAddress = `${paramAddress.slice(
+      0,
+      6
+    )}...${paramAddress.slice(-4)}`;
+    return {
+      address: paramAddress,
+      name: paramEllipsisAddress,
+      ellipsisAddress: paramEllipsisAddress,
+    };
+  } else if (address && ellipsisAddress) {
+    return {
+      address,
+      ellipsisAddress,
+      name: ellipsisAddress,
+    };
+  } else {
+    return null;
+  }
 };

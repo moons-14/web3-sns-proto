@@ -1,9 +1,10 @@
 import { useRecoilValue } from "recoil";
 
-import { accountsState, connectingChainIdState } from "./../states/web3/atom";
+import {} from "@/states/web3/atom";
 
 import {
-  accountSelector,
+  addressesState,
+  connectingChainIdState,
   connectorState,
   currentChainIdSelector,
   currentRpcProviderSelector,
@@ -12,6 +13,7 @@ import {
   useConnectWallet,
   useDisconnect,
   useSwitchChain,
+  web3AccountSelector,
 } from "@/states/web3";
 
 export const useWeb3 = () => {
@@ -22,8 +24,8 @@ export const useWeb3 = () => {
   const signerOrProvider = useRecoilValue(signerOrProviderSelector);
   const fetchProvider = useRecoilValue(currentRpcProviderSelector);
   const signer = useRecoilValue(signerState);
-  const addresses = useRecoilValue(accountsState);
-  const accounts = useRecoilValue(accountSelector);
+  const addresses = useRecoilValue(addressesState);
+  const accounts = useRecoilValue(web3AccountSelector);
   const connectingChainId = useRecoilValue(connectingChainIdState);
   const currentChainId = useRecoilValue(currentChainIdSelector);
   const isConnected = Boolean(signer);

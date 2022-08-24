@@ -2,7 +2,7 @@ import {
   ChatBubbleBottomCenterTextIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 import { SpinnerSuspense } from "../Elements";
 
@@ -18,11 +18,11 @@ const BottomNav = () => {
             <UsersIcon className="h-8 w-8" />
           </a>
         </div>
-        <div className="avatar placeholder aspect-square h-full">
+        <Link to="wallet" className="avatar placeholder aspect-square h-full">
           <div className="bg-neutral-focus text-neutral-content rounded-full">
             <span className="text-xs">AA</span>
           </div>
-        </div>
+        </Link>
       </div>
     </div>
   );
