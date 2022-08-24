@@ -1,6 +1,6 @@
 import Avatar from "boring-avatars";
 
-import { useOpenAccount } from "../hooks/useOpenAddress";
+import { useOpenAccount } from "../hooks";
 
 export const WalletInfo: React.FC = () => {
   const account = useOpenAccount();

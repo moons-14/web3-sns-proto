@@ -1,12 +1,17 @@
 import {
   ChatBubbleBottomCenterTextIcon,
+  UserCircleIcon,
   UsersIcon,
 } from "@heroicons/react/24/outline";
+import Avatar from "boring-avatars";
 import { Link, Outlet } from "react-router-dom";
 
 import { SpinnerSuspense } from "../Elements";
 
+import { useUser } from "@/states/account";
+
 const BottomNav = () => {
+  const { address } = useUser();
   return (
     <div className="fixed bottom-4 z-10 flex w-full justify-center px-8">
       <div className="flex w-full max-w-xs gap-4">
@@ -19,8 +24,12 @@ const BottomNav = () => {
           </a>
         </div>
         <Link to="wallet" className="avatar placeholder aspect-square h-full">
-          <div className="bg-neutral-focus text-neutral-content rounded-full">
-            <span className="text-xs">AA</span>
+          <div className="bg-neutral-focus text-neutral-content rounded-full shadow-lg">
+            {address ? (
+              <Avatar size="100%" name={address} />
+            ) : (
+              <UserCircleIcon />
+            )}
           </div>
         </Link>
       </div>
