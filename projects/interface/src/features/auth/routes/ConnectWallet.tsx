@@ -1,23 +1,29 @@
 import { GlobeAltIcon } from "@heroicons/react/outline";
+import { useNavigate } from "react-router-dom";
 
 import { login } from "../api";
 
 import MetamaskLogo from "@/assets/logo/metamask.svg";
 import WalletConnectLogo from "@/assets/logo/walletconnect.svg";
 import { useWeb3 } from "@/hooks";
-import { MetamaskConnector } from "@/libs/connector";
+import { Connector, MetamaskConnector } from "@/libs/connector";
 
 export const ConnectWallet = () => {
   const { connectWallet } = useWeb3();
+  const navigate = useNavigate();
+
+  const connect = (connector: Connector) => {
+    return login(connectWallet(connector))
+      .then(() => navigate("/"))
+      .catch(console.error);
+  };
   return (
     <div className="flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Connect Wallet</h1>
       <div className="flex w-full flex-col gap-2">
         <button
           className="btn btn-outline justify-start gap-1 pr-12 normal-case"
-          onClick={() =>
-            void MetamaskConnector.connect().then(connectWallet).then(login)
-          }
+          onClick={() => void MetamaskConnector.connect().then(connect)}
         >
           <img src={MetamaskLogo} className="aspect-square h-10" />
           Metamask
