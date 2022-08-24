@@ -10,6 +10,7 @@ export const login = async (connector: Connector) => {
   const address = connector.getAccounts()[0];
   invariant(signer && address);
   const message = { address, signedAt: String(Date.now()) };
+  if (auth.currentUser?.uid === address) return;
   const signature = await signer._signTypedData(
     AuthDomain,
     { AuthTokenRequest },
