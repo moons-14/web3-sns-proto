@@ -3,13 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import { ConnectWallet } from "@/features/auth";
 import { lazyImport } from "@/utils";
 
-const { AuthLayout } = lazyImport(
+const { AuthLayout, HomeLayout } = lazyImport(
   () => import("@/components/Layout"),
-  "AuthLayout"
-);
-const { HomeLayout } = lazyImport(
-  () => import("@/components/Layout"),
-  "HomeLayout"
+  ["AuthLayout", "HomeLayout"]
 );
 
 export const AppRoutes = () => {
