@@ -1,4 +1,7 @@
-import { ChartBarIcon, ChatIcon } from "@heroicons/react/outline";
+import {
+  ChatBubbleBottomCenterTextIcon,
+  UsersIcon,
+} from "@heroicons/react/24/outline";
 import { Outlet } from "react-router-dom";
 
 import { SpinnerSuspense } from "../Elements";
@@ -9,10 +12,10 @@ const BottomNav = () => {
       <div className="flex w-full max-w-xs gap-4">
         <div className="card bg-base-100 w-full flex-row justify-center gap-8 p-2">
           <a className="btn btn-ghost btn-circle">
-            <ChatIcon className="h-8 w-8" />
+            <ChatBubbleBottomCenterTextIcon className="h-8 w-8" />
           </a>
           <a className="btn btn-ghost btn-circle">
-            <ChartBarIcon className="h-8 w-8" />
+            <UsersIcon className="h-8 w-8" />
           </a>
         </div>
         <div className="avatar placeholder aspect-square h-full">
