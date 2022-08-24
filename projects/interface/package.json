@@ -24,6 +24,7 @@
     "react-error-boundary": "^3.1.4",
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.5",
+    "recoil-persist": "^4.2.0",
     "ts-pattern": "^4.0.5"
   },
   "devDependencies": {

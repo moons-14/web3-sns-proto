@@ -1,7 +1,16 @@
 import { ChainParameter, chainParameters } from "@crypteen/common";
 import { atom } from "recoil";
+import { recoilPersist } from "recoil-persist";
 
 import type { Connector, TypedSigner } from "@/libs/connector";
+
+const { persistAtom } = recoilPersist();
+
+export const connectMethodState = atom<string>({
+  key: "connectMethodState",
+  default: "",
+  effects: [persistAtom],
+});
 
 export const connectorState = atom<Connector | null>({
   key: "connectorState",

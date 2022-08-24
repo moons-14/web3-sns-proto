@@ -15,6 +15,8 @@ import { invariant, parseChainId } from "@/utils";
  * @dev Metamaskを使ってwalletに接続する
  */
 export class MetamaskConnector implements Connector {
+  type = "MetamaskConnector";
+
   private listeners: {
     [key in ConnectorEvents]: ((value: ConnectorEventValues[key]) => void)[];
   } = {

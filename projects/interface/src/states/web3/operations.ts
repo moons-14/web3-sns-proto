@@ -4,6 +4,7 @@ import { useRecoilCallback } from "recoil";
 import {
   addressesState,
   connectingChainIdState,
+  connectMethodState,
   connectorState,
   signerState,
 } from "./atom";
@@ -21,6 +22,7 @@ export const useConnectWallet = () => {
           chainId: connector.getChainId(),
         });
         set(connectorState, connector);
+        set(connectMethodState, connector.type);
         connector.on("signerChanged", curry(set, signerState));
         connector.on("accountsChanged", curry(set, addressesState));
         connector.on("chainChanged", curry(set, connectingChainIdState));

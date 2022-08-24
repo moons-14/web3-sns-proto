@@ -32,6 +32,7 @@ export type ConnectorEventValues = {
 };
 
 export interface Connector {
+  type: string;
   getSigner(): TypedSigner | null;
   getAccounts(): string[];
   getChainId(): number | null;
