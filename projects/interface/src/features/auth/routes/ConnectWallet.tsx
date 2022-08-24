@@ -1,5 +1,7 @@
 import { GlobeAltIcon } from "@heroicons/react/outline";
 
+import { login } from "../api";
+
 import MetamaskLogo from "@/assets/logo/metamask.svg";
 import WalletConnectLogo from "@/assets/logo/walletconnect.svg";
 import { useWeb3 } from "@/hooks";
@@ -13,7 +15,9 @@ export const ConnectWallet = () => {
       <div className="flex w-full flex-col gap-2">
         <button
           className="btn btn-outline justify-start gap-1 pr-12 normal-case"
-          onClick={() => void MetamaskConnector.connect().then(connectWallet)}
+          onClick={() =>
+            void MetamaskConnector.connect().then(connectWallet).then(login)
+          }
         >
           <img src={MetamaskLogo} className="aspect-square h-10" />
           Metamask

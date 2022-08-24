@@ -1,18 +1,27 @@
 import { AuthDomain, AuthTokenRequest } from "@crypteen/common";
-import { httpsCallable } from "firebase/functions";
+import { signInWithCustomToken } from "firebase/auth";
 
 import type { Connector } from "@/libs/connector";
-import { functions } from "@/libs/firebase";
+import { auth, getAuthToken } from "@/libs/firebase";
 import { invariant } from "@/utils";
 
 export const login = async (connector: Connector) => {
   const signer = connector.getSigner();
-  invariant(signer);
+  const address = connector.getAccounts()[0];
+  invariant(signer && address);
+  const message = { address, signedAt: String(Date.now()) };
   const signature = await signer._signTypedData(
     AuthDomain,
     { AuthTokenRequest },
-    { address: connector.getAccounts()[0], signedAt: Date.now() }
+    message
   );
-
-  const getAuthToken = httpsCallable(functions, "getAuthToken");
+  const {
+    data: { token },
+  } = await getAuthToken({
+    message,
+    signature,
+  });
+  invariant(token);
+  const result = await signInWithCustomToken(auth, token);
+  console.log(result);
 };
