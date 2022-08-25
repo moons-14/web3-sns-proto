@@ -7,6 +7,7 @@
   "private": true,
   "scripts": {
     "dev": "run-p interface:dev backend:dev",
+    "postinstall": "yarn common:build",
     "interface:dev": "yarn workspace @crypteen/interface dev",
     "interface:build": "yarn workspace @crypteen/interface build",
     "interface:lint": "yarn workspace @crypteen/interface lint",
