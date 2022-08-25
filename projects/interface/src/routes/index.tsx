@@ -1,7 +1,5 @@
 import { Route, Routes } from "react-router-dom";
 
-import { ConnectWallet } from "@/features/auth";
-import { Wallet } from "@/features/wallet";
 import { lazyImport } from "@/utils";
 
 const { HomeLayout } = lazyImport(
@@ -14,6 +12,15 @@ const { AuthLayout } = lazyImport(
   "AuthLayout"
 );
 
+const { ConnectWallet } = lazyImport(
+  () => import("@/features/auth"),
+  "ConnectWallet"
+);
+
+const { Wallet } = lazyImport(() => import("@/features/wallet"), "Wallet");
+
+const { Channels } = lazyImport(() => import("@/features/chat"), "Channels");
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -21,7 +28,7 @@ export const AppRoutes = () => {
         <Route path="/auth" element={<ConnectWallet />} />
       </Route>
       <Route path="/" element={<HomeLayout />}>
-        <Route path="/" />
+        <Route path="/" element={<Channels />} />
         <Route path="/friends" />
         <Route path="/wallet" element={<Wallet />} />
       </Route>
