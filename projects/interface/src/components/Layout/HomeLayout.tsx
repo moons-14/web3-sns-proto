@@ -58,7 +58,10 @@ const BottomNav = () => {
 
 export const HomeLayout = () => {
   return (
-    <div className="bg-base-200 text-base-content flex min-h-screen">
+    <div
+      className="bg-base-200 text-base-content flex min-h-screen"
+      data-theme="light"
+    >
       <SpinnerSuspense>
         <Outlet />
       </SpinnerSuspense>

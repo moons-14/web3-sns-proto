@@ -6,7 +6,7 @@ export const WalletInfo: React.FC = () => {
   const account = useOpenAccount();
   return (
     <div className="flex w-full flex-col items-center gap-2 font-mono">
-      <div className="card w-28 shadow">
+      <div className="card w-28 shadow-lg">
         <Avatar
           size="100%"
           square={true}

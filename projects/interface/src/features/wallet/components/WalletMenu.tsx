@@ -4,7 +4,7 @@ export const WalletMenu = () => {
   return (
     <div className="flex w-full justify-end p-2">
       <button className="btn btn-ghost btn-circle">
-        <EllipsisVerticalIcon className="text-neutral w-10" />
+        <EllipsisVerticalIcon className="text-base-content w-10" />
       </button>
     </div>
   );
