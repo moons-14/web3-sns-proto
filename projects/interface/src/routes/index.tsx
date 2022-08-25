@@ -4,9 +4,14 @@ import { ConnectWallet } from "@/features/auth";
 import { Wallet } from "@/features/wallet";
 import { lazyImport } from "@/utils";
 
-const { AuthLayout, HomeLayout } = lazyImport(
+const { HomeLayout } = lazyImport(
   () => import("@/components/Layout"),
-  ["AuthLayout", "HomeLayout"]
+  "HomeLayout"
+);
+
+const { AuthLayout } = lazyImport(
+  () => import("@/components/Layout/AuthLayout"),
+  "AuthLayout"
 );
 
 export const AppRoutes = () => {
@@ -16,6 +21,8 @@ export const AppRoutes = () => {
         <Route path="/auth" element={<ConnectWallet />} />
       </Route>
       <Route path="/" element={<HomeLayout />}>
+        <Route path="/" />
+        <Route path="/friends" />
         <Route path="/wallet" element={<Wallet />} />
       </Route>
     </Routes>
