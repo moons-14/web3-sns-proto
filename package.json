@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "run-p interface:dev backend:dev",
     "interface:dev": "yarn workspace @crypteen/interface dev",
+    "interface:build": "yarn workspace @crypteen/interface build",
     "interface:lint": "yarn workspace @crypteen/interface lint",
     "interface:fix-all": "yarn interface:lint --fix && yarn workspace @web2.7-sns/interface format",
     "contract:compile": "yarn workspace @crypteen/contract compile",
