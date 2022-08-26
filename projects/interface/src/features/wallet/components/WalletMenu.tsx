@@ -5,6 +5,7 @@ import {
   ShareIcon,
 } from "@heroicons/react/24/outline";
 import clsx from "clsx";
+import { Link } from "react-router-dom";
 
 export const WalletMenu = () => {
   return (
@@ -18,7 +19,8 @@ export const WalletMenu = () => {
           <Menu.Item>
             {({ active }) => (
               <li>
-                <button
+                <Link
+                  to="/setting/profile"
                   className={clsx(
                     active && "bg-primary text-primary-content",
                     "gap-2 px-2 font-bold"
@@ -26,7 +28,7 @@ export const WalletMenu = () => {
                 >
                   <PencilSquareIcon className="w-6" />
                   Edit Profile
-                </button>
+                </Link>
               </li>
             )}
           </Menu.Item>
