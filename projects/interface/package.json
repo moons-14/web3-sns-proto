@@ -12,6 +12,7 @@
     "format": "prettier --write \"**/*.+(js|json|yml|ts|tsx)\""
   },
   "dependencies": {
+    "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^2.0.2",
     "@metamask/detect-provider": "^1.2.0",
     "boring-avatars": "^1.7.0",

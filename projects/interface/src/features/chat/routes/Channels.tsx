@@ -20,7 +20,7 @@ export const Channels = () => {
         <div className="btn btn-sm btn-outline btn-secondary">Important</div>
         <div className="btn btn-sm btn-outline btn-info">Unknown</div>
       </div>
-      <div className="btn btn-info fixed bottom-24 right-6">
+      <div className="btn btn-info fixed bottom-24 right-6 gap-2 rounded-full shadow-lg">
         <ChatBubbleLeftRightIcon className="h-6 w-6" />
         Start Chat
       </div>
