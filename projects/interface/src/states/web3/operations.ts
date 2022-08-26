@@ -17,21 +17,26 @@ export const useConnectWallet = () => {
   const connectWallet = useRecoilCallback(
     ({ set }) =>
       (connector: Connector) => {
-        logger("connect_wallet", {
-          account: connector.getAccounts()[0],
-          chainId: connector.getChainId(),
-        });
-        set(connectorState, connector);
-        set(connectMethodState, connector.type);
-        connector.on("signerChanged", curry(set, signerState));
-        connector.on("accountsChanged", curry(set, addressesState));
-        connector.on("chainChanged", curry(set, connectingChainIdState));
-        connector.on("disconnect", () => {
-          set(signerState, null);
-          set(addressesState, []);
-          set(connectingChainIdState, null);
-        });
-        return connector;
+        try {
+          logger("connect_wallet", {
+            account: connector.getAccounts()[0],
+            chainId: connector.getChainId(),
+          });
+          set(connectorState, connector);
+          set(connectMethodState, connector.type);
+          connector.on("signerChanged", curry(set, signerState));
+          connector.on("accountsChanged", curry(set, addressesState));
+          connector.on("chainChanged", curry(set, connectingChainIdState));
+          connector.on("disconnect", () => {
+            set(signerState, null);
+            set(addressesState, []);
+            set(connectingChainIdState, null);
+          });
+          return connector;
+        } catch (e) {
+          set(connectMethodState, "");
+          throw e;
+        }
       }
   );
   return connectWallet;

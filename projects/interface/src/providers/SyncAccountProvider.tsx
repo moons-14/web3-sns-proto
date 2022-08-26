@@ -1,5 +1,5 @@
-import { PropsWithChildren, useEffect } from "react";
-import { useRecoilValue } from "recoil";
+import { PropsWithChildren, useCallback, useEffect, useMemo } from "react";
+import { useRecoilState } from "recoil";
 
 import { useWeb3 } from "@/hooks";
 import { MetamaskConnector } from "@/libs/connector";
@@ -8,12 +8,24 @@ import { connectMethodState } from "@/states/web3";
 export const SyncAccountProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const lastConnectMethod = useRecoilValue(connectMethodState);
+  const [lastConnectMethod, setConnectMethod] =
+    useRecoilState(connectMethodState);
   const { connectWallet } = useWeb3();
 
-  const connectWalletMethods = {
-    MetamaskConnector: () => MetamaskConnector.connect().then(connectWallet),
-  };
+  const resetConnectMethod = useCallback(
+    () => setConnectMethod(""),
+    [setConnectMethod]
+  );
+
+  const connectWalletMethods = useMemo(
+    () => ({
+      MetamaskConnector: () =>
+        MetamaskConnector.connect()
+          .then(connectWallet)
+          .catch(resetConnectMethod),
+    }),
+    [connectWallet, resetConnectMethod]
+  );
 
   useEffect(() => {
     if (lastConnectMethod in connectWalletMethods)

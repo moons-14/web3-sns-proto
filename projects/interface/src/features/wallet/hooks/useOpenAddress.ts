@@ -7,7 +7,7 @@ export const useOpenAccount = (): {
   ellipsisAddress: string;
   name: string;
 } | null => {
-  const { paramAddress } = useParams();
+  const { address: paramAddress } = useParams();
   const { address, ellipsisAddress } = useUser();
   if (paramAddress) {
     const paramEllipsisAddress = `${paramAddress.slice(
