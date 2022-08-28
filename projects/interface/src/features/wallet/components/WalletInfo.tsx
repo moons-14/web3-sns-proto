@@ -2,10 +2,10 @@ import Avatar from "boring-avatars";
 
 import { abbreviate } from "@/utils";
 
-export const WalletInfo: React.FC<{ address?: string; name?: string }> = ({
-  address,
-  name,
-}) => {
+export const WalletInfo: React.FC<{
+  address?: string | undefined;
+  name?: string | undefined;
+}> = ({ address, name }) => {
   return (
     <div className="flex w-full flex-col items-center gap-2 font-mono">
       <div className="card w-28 shadow-lg">

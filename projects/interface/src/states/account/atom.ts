@@ -1,17 +1,18 @@
 import type { User } from "firebase/auth";
-import { atom } from "recoil";
+import { atom, atomFamily } from "recoil";
 
-import { userSyncEffect } from "./effect";
+import { profileSyncEffect, userSyncEffect } from "./effect";
 import type { Profile } from "./types";
 
 export const firebaseUserState = atom<User | null>({
   key: "firebaseUserState",
   default: null,
   effects: [userSyncEffect],
+  dangerouslyAllowMutability: true,
 });
 
-export const profileState = atom<Profile | null>({
+export const profileState = atomFamily<Profile | null, string>({
   key: "profileState",
   default: null,
-  effects: [],
+  effects: (address: string) => [profileSyncEffect(address)],
 });

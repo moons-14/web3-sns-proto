@@ -4,19 +4,15 @@ import { Link } from "react-router-dom";
 import { WalletAction, WalletInfo, WalletMenu } from "../components";
 
 import { useUser } from "@/states/account";
-import { abbreviate } from "@/utils";
 
 export const Wallet = () => {
-  const { address } = useUser();
+  const { address, name } = useUser();
   return (
     <div className="flex w-full flex-col">
       <div className="bg-base-100 card relative m-4 shadow-lg">
         <div className="mb-2 flex flex-col">
           <WalletMenu />
-          <WalletInfo
-            address={address || ""}
-            name={address ? abbreviate(address) : ""}
-          />
+          <WalletInfo address={address} name={name} />
         </div>
         <div className="mb-6 flex flex-col items-center">
           {address ? (
