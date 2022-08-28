@@ -5,7 +5,11 @@ import MetamaskLogo from "@/assets/logo/metamask.svg";
 import WalletConnectLogo from "@/assets/logo/walletconnect.svg";
 import { useWeb3 } from "@/hooks";
 import { login } from "@/libs/auth";
-import { Connector, MetamaskConnector } from "@/libs/connector";
+import {
+  Connector,
+  MetamaskConnector,
+  WalletConnectConnector,
+} from "@/libs/connector";
 
 export const ConnectWallet = () => {
   const { connectWallet } = useWeb3();
@@ -22,12 +26,15 @@ export const ConnectWallet = () => {
       <div className="flex w-full flex-col gap-2">
         <button
           className="btn btn-outline justify-start gap-1 pr-12 normal-case"
-          onClick={() => void MetamaskConnector.connect().then(connect)}
+          onClick={() => MetamaskConnector.connect().then(connect)}
         >
           <img src={MetamaskLogo} className="aspect-square h-10" />
           Metamask
         </button>
-        <button className="btn btn-outline justify-start gap-1 pr-12 normal-case">
+        <button
+          className="btn btn-outline justify-start gap-1 pr-12 normal-case"
+          onClick={() => WalletConnectConnector.connect().then(connect)}
+        >
           <img src={WalletConnectLogo} className="aspect-square h-10" />
           WalletConnect
         </button>
