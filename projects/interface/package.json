@@ -15,7 +15,7 @@
     "@headlessui/react": "^1.6.6",
     "@heroicons/react": "^2.0.2",
     "@metamask/detect-provider": "^1.2.0",
-    "@walletconnect/web3-provider": "^1.8.0",
+    "@walletconnect/web3-provider": "^1.7.4",
     "boring-avatars": "^1.7.0",
     "clsx": "^1.2.1",
     "daisyui": "^2.20.0",
@@ -31,10 +31,11 @@
     "react-router-dom": "^6.3.0",
     "recoil": "^0.7.5",
     "recoil-persist": "^4.2.0",
-    "stream": "^0.0.2",
     "ts-pattern": "^4.0.5"
   },
   "devDependencies": {
+    "@esbuild-plugins/node-globals-polyfill": "^0.1.1",
+    "@esbuild-plugins/node-modules-polyfill": "^0.1.4",
     "@tsconfig/strictest": "^1.0.1",
     "@types/react": "^18.0.15",
     "@types/react-dom": "^18.0.6",
