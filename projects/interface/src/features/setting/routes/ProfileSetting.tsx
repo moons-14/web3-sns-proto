@@ -1,11 +1,27 @@
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
+import { saveProfile } from "../api";
 import type { ProfileForm } from "../types";
+
+import { useWeb3 } from "@/hooks";
 
 export const ProfileSetting = () => {
   const { register, handleSubmit } = useForm<ProfileForm>();
+  const [isLoading, setIsLoading] = useState(false);
+  const { connector } = useWeb3();
+  const navigate = useNavigate();
 
-  const onSubmit = (data: ProfileForm) => console.log(data);
+  const onSubmit = (data: ProfileForm) => {
+    try {
+      setIsLoading(true);
+      connector && saveProfile(data, connector);
+      navigate(-1);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <form
@@ -17,6 +33,7 @@ export const ProfileSetting = () => {
         <input
           className="input input-bordered w-full"
           placeholder="vitalik.eth"
+          disabled={isLoading}
           {...register("name")}
         />
       </div>
@@ -25,6 +42,7 @@ export const ProfileSetting = () => {
         <textarea
           className="textarea textarea-bordered w-full resize-none"
           placeholder="Maybe the founder of ETH."
+          disabled={isLoading}
           {...register("profile")}
         />
       </div>
