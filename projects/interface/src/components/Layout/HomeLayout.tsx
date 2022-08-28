@@ -17,7 +17,10 @@ import { useUser } from "@/states/account";
 const BottomNav = () => {
   const { address } = useUser();
   return (
-    <ThemeBox className="fixed bottom-4 z-10 flex w-full justify-center px-8">
+    <ThemeBox
+      transparent
+      className="fixed bottom-4 z-10 flex w-full justify-center px-8"
+    >
       <div className="flex h-16 w-full max-w-xs gap-4">
         <div className="card bg-base-100 w-full flex-row justify-center gap-8 p-2">
           <NavLink to="/" className="btn btn-ghost btn-circle">

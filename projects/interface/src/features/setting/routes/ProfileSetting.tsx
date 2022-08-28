@@ -6,9 +6,13 @@ import { saveProfile } from "../api";
 import type { ProfileForm } from "../types";
 
 import { useWeb3 } from "@/hooks";
+import { useUser } from "@/states/account";
 
 export const ProfileSetting = () => {
-  const { register, handleSubmit } = useForm<ProfileForm>();
+  const { name, profile } = useUser();
+  const { register, handleSubmit } = useForm<ProfileForm>({
+    defaultValues: { name, profile },
+  });
   const [isLoading, setIsLoading] = useState(false);
   const { connector } = useWeb3();
   const navigate = useNavigate();
