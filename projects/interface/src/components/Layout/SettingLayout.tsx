@@ -1,12 +1,12 @@
 import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import { SpinnerSuspense } from "../Elements";
+import { SpinnerSuspense, ThemeBox } from "../Elements";
 
 export const SettingLayout = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-base-200 flex h-screen flex-col items-center">
+    <ThemeBox className="bg-base-200 flex h-screen flex-col items-center">
       <div className="navbar justify-between">
         <div className="navbar-start">
           <button
@@ -22,6 +22,6 @@ export const SettingLayout = () => {
       <SpinnerSuspense>
         <Outlet />
       </SpinnerSuspense>
-    </div>
+    </ThemeBox>
   );
 };

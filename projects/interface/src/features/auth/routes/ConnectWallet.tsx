@@ -1,11 +1,10 @@
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 
-import { login } from "../api";
-
 import MetamaskLogo from "@/assets/logo/metamask.svg";
 import WalletConnectLogo from "@/assets/logo/walletconnect.svg";
 import { useWeb3 } from "@/hooks";
+import { login } from "@/libs/auth";
 import { Connector, MetamaskConnector } from "@/libs/connector";
 
 export const ConnectWallet = () => {
@@ -13,7 +12,7 @@ export const ConnectWallet = () => {
   const navigate = useNavigate();
 
   const connect = (connector: Connector) => {
-    return login(connectWallet(connector))
+    login(connectWallet(connector))
       .then(() => navigate("/"))
       .catch(console.error);
   };

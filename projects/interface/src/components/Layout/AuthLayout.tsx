@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 
-import { SpinnerSuspense } from "../Elements";
+import { SpinnerSuspense, ThemeBox } from "../Elements";
 
 export const AuthLayout = () => {
   return (
-    <div className="bg-base-200 flex h-screen flex-col items-center justify-center">
+    <ThemeBox className="bg-base-200 flex h-screen flex-col items-center justify-center">
       <SpinnerSuspense>
         <Outlet />
       </SpinnerSuspense>
-    </div>
+    </ThemeBox>
   );
 };

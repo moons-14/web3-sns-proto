@@ -10,14 +10,14 @@ import {
 import Avatar from "boring-avatars";
 import { Link, NavLink, Outlet } from "react-router-dom";
 
-import { SpinnerSuspense } from "../Elements";
+import { SpinnerSuspense, ThemeBox } from "../Elements";
 
 import { useUser } from "@/states/account";
 
 const BottomNav = () => {
   const { address } = useUser();
   return (
-    <div className="fixed bottom-4 z-10 flex w-full justify-center px-8">
+    <ThemeBox className="fixed bottom-4 z-10 flex w-full justify-center px-8">
       <div className="flex h-16 w-full max-w-xs gap-4">
         <div className="card bg-base-100 w-full flex-row justify-center gap-8 p-2">
           <NavLink to="/" className="btn btn-ghost btn-circle">
@@ -52,7 +52,7 @@ const BottomNav = () => {
           </div>
         </Link>
       </div>
-    </div>
+    </ThemeBox>
   );
 };
 
