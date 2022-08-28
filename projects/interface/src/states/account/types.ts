@@ -6,3 +6,9 @@ export type Account = {
   ellipsisAddress?: string;
   ens?: string;
 };
+
+export type Profile = {
+  name?: string;
+  profile?: string;
+  avatar?: string;
+};
