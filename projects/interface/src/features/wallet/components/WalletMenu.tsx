@@ -1,5 +1,6 @@
 import { Menu } from "@headlessui/react";
 import {
+  ArrowRightOnRectangleIcon,
   EllipsisVerticalIcon,
   PencilSquareIcon,
   QrCodeIcon,
@@ -13,7 +14,7 @@ import { useWeb3 } from "@/hooks";
 import { useModal } from "@/states/modal";
 
 export const WalletMenu = () => {
-  const { isConnected, addresses } = useWeb3();
+  const { isConnected, addresses, disconnect } = useWeb3();
   const { isOpen, close, open } = useModal("qr-modal");
 
   return (
@@ -60,6 +61,22 @@ export const WalletMenu = () => {
                 >
                   <ShareIcon className="w-6" />
                   Share
+                </button>
+              </li>
+            )}
+          </Menu.Item>
+          <Menu.Item>
+            {({ active }) => (
+              <li>
+                <button
+                  className={clsx(
+                    "text-error gap-2 px-2 font-bold",
+                    active && "bg-primary text-primary-content"
+                  )}
+                  onClick={disconnect}
+                >
+                  <ArrowRightOnRectangleIcon className="w-6" />
+                  Disconnect
                 </button>
               </li>
             )}
