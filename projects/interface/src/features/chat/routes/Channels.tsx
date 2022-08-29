@@ -3,12 +3,14 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 
-import { CreateChannelModal } from "../components";
+import { ChannelList, CreateChannelModal } from "../components";
 
+import { SpinnerSuspense } from "@/components/Elements";
 import { useModal } from "@/states/modal";
 
 export const Channels = () => {
   const { close, isOpen, open } = useModal("create-channel");
+
   return (
     <>
       <CreateChannelModal open={isOpen} onClose={close} />
@@ -29,6 +31,9 @@ export const Channels = () => {
           <div className="btn btn-sm btn-outline btn-secondary">Important</div>
           <div className="btn btn-sm btn-outline btn-info">Unknown</div>
         </div>
+        <SpinnerSuspense>
+          <ChannelList />
+        </SpinnerSuspense>
         <button
           className="btn btn-info fixed bottom-24 right-6 gap-2 rounded-full shadow-lg"
           onClick={open}

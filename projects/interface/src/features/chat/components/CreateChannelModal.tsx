@@ -8,7 +8,7 @@ import { createChannel } from "../api";
 
 import { Modal, ModalProps, ModalTitle } from "@/components/Elements";
 import { useWeb3 } from "@/hooks";
-import { abbreviate } from "@/utils";
+import { abbreviate, normalize } from "@/utils";
 
 type AddressesForm = {
   inputting: string;
@@ -30,7 +30,9 @@ const AddressesForm: React.FC<{
     formState: { errors },
   } = useForm<AddressesForm>();
   const onSubmit = (v: AddressesForm) => {
-    onChange(Array.from(new Set([...(addresses || []), v.inputting])));
+    onChange(
+      Array.from(new Set([...(addresses || []), v.inputting])).map(normalize)
+    );
     resetField("inputting");
   };
   return (
@@ -66,7 +68,9 @@ const AddressesForm: React.FC<{
   );
 };
 
-const CreateChannelForm = () => {
+const CreateChannelForm: React.FC<{ onCreate: () => void }> = ({
+  onCreate,
+}) => {
   const {
     register,
     control,
@@ -79,7 +83,7 @@ const CreateChannelForm = () => {
   const onSubmit = async (data: CreateChannelForm) => {
     try {
       setIsLoading(true);
-      await createChannel(data, connector);
+      await createChannel(data, connector).then(onCreate);
     } finally {
       setIsLoading(false);
     }
@@ -123,7 +127,7 @@ export const CreateChannelModal: React.FC<ModalProps> = (props) => {
   return (
     <Modal className="flex flex-col gap-2 p-4 sm:p-6" {...props}>
       <ModalTitle className="text-lg font-bold">Create New Chat</ModalTitle>
-      <CreateChannelForm />
+      <CreateChannelForm onCreate={props.onClose} />
     </Modal>
   );
 };
