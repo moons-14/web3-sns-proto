@@ -1,8 +1,8 @@
-import { chainParameters } from "@/../../common/dist";
+import { chainParameters } from "@crypteen/common";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import MetamaskLogo from "@/assets/logo/metamask.svg";
 import WalletConnectLogo from "@/assets/logo/walletconnect.svg";
@@ -87,6 +87,9 @@ export const ConnectWallet = () => {
           <GlobeAltIcon className="aspect-square h-8" />
           BrowserWallet
         </button>
+        <Link to="/" className="btn btn-error">
+          Back Home
+        </Link>
       </div>
     </div>
   );

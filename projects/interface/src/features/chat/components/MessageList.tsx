@@ -15,7 +15,7 @@ const MessageView: React.FC<{ message: Message }> = ({ message }) => {
   if (address === message.sender) {
     return (
       <div className="flex justify-end gap-2">
-        <div className="card bg-info text-info-content w-2/3 whitespace-pre-wrap p-2">
+        <div className="card bg-info text-info-content w-2/3 whitespace-pre-wrap break-all p-2">
           {message.text}
         </div>
       </div>
@@ -30,7 +30,7 @@ const MessageView: React.FC<{ message: Message }> = ({ message }) => {
           <div className="text-lg font-bold">
             {profile?.name || abbreviate(message.sender)}
           </div>
-          <div className="card bg-base-100 w-2/3 whitespace-pre-wrap p-2">
+          <div className="card bg-base-100 w-2/3 whitespace-pre-wrap break-all p-2">
             {message.text}
           </div>
         </div>

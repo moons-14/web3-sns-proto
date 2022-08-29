@@ -4,7 +4,18 @@ import { useRecoilValue } from "recoil";
 
 import { channelsSelector } from "../states";
 
+import { profileState } from "@/states/account";
 import { abbreviate } from "@/utils";
+
+const UserBadge: React.FC<{ address: string }> = ({ address }) => {
+  const profile = useRecoilValue(profileState(address));
+
+  return (
+    <span className="truncate text-sm font-bold">
+      {profile?.name || abbreviate(address)}
+    </span>
+  );
+};
 
 export const ChannelList = () => {
   const channels = useRecoilValue(channelsSelector);
@@ -15,7 +26,7 @@ export const ChannelList = () => {
     );
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 overflow-y-auto pb-32">
       {channels.map((channel, i) => (
         <Link
           to={`/chat/${channel.id}`}
@@ -33,11 +44,9 @@ export const ChannelList = () => {
           </div>
           <div className="flex flex-col">
             <div className="text-lg font-bold">{channel.name}</div>
-            <div className="flex gap-1">
+            <div className="flex flex-nowrap gap-1 overflow-x-auto">
               {channel.members.map((name) => (
-                <span key={`${channel.name}_${name}`} className="text-sm">
-                  {abbreviate(name)}
-                </span>
+                <UserBadge key={`${channel.name}_${name}`} address={name} />
               ))}
             </div>
           </div>

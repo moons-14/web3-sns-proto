@@ -6,6 +6,9 @@ export const WalletInfo: React.FC<{
   address?: string | undefined;
   name?: string | undefined;
 }> = ({ address, name }) => {
+  const copyAddress = () => {
+    void navigator.clipboard.writeText(address || "0x00");
+  };
   return (
     <div className="flex w-full flex-col items-center gap-2 font-mono">
       <div className="card w-28 shadow-lg">
@@ -21,9 +24,12 @@ export const WalletInfo: React.FC<{
         <div className="text-2xl">{name ? name : "Not Connecting"}</div>
         <div>
           Address
-          <span className="ml-2 text-sm">
+          <button
+            className="btn btn-sm btn-ghost ml-2 px-0 text-sm"
+            onClick={copyAddress}
+          >
             {address ? abbreviate(address) : "0x00...000"}
-          </span>
+          </button>
         </div>
       </div>
     </div>

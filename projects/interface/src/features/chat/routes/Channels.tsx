@@ -15,7 +15,7 @@ export const Channels = () => {
     <>
       <CreateChannelModal open={isOpen} onClose={close} />
       <div className="flex w-full flex-col gap-2 p-4">
-        <div className="bg-base-100 card flex-row gap-2 p-4">
+        <div className="bg-base-100 card sticky top-4 z-10 flex-row gap-2 p-4">
           <MagnifyingGlassIcon className="h-6 w-6" />
           <input
             type="text"
