@@ -3,7 +3,8 @@ import {
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 
-import { CreateChannelModal } from "@/components/Modal/CreateChannelModal";
+import { CreateChannelModal } from "../components";
+
 import { useModal } from "@/states/modal";
 
 export const Channels = () => {
