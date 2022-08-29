@@ -1,3 +1,4 @@
+import { chainParameters } from "@/../../common/dist";
 import { GlobeAltIcon } from "@heroicons/react/24/outline";
 import clsx from "clsx";
 import { useState } from "react";
@@ -8,13 +9,15 @@ import WalletConnectLogo from "@/assets/logo/walletconnect.svg";
 import { useWeb3 } from "@/hooks";
 import { login } from "@/libs/auth";
 import {
+  BrowserConnector,
   Connector,
   MetamaskConnector,
-  WalletConnectConnector,
 } from "@/libs/connector";
+import { useWalletData } from "@/states/wallet";
 
 export const ConnectWallet = () => {
-  const { connectWallet } = useWeb3();
+  const { connectWallet, currentChainId } = useWeb3();
+  const { walletData, setWalletData } = useWalletData();
   const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -27,11 +30,30 @@ export const ConnectWallet = () => {
     }
   };
 
-  const connect = (connector: Connector) => {
+  const connect = (connector: Connector) =>
     login(connectWallet(connector))
       .then(() => navigate("/"))
       .catch(console.error);
+
+  const connectBrowserWallet = () => {
+    if (walletData) {
+      return BrowserConnector.connect(
+        walletData.seedPhrase,
+        chainParameters[currentChainId]
+      ).then(connect);
+    } else {
+      return BrowserConnector.createWallet(chainParameters[currentChainId])
+        .then((connector) => {
+          setWalletData({
+            address: connector.wallet.address,
+            seedPhrase: connector.wallet.mnemonic.phrase,
+          });
+          return connector;
+        })
+        .then(connect);
+    }
   };
+
   return (
     <div className="flex flex-col items-center gap-4">
       <h1 className="text-2xl font-bold">Connect Wallet</h1>
@@ -50,9 +72,6 @@ export const ConnectWallet = () => {
         <button
           className="btn btn-outline justify-start gap-1 pr-12 normal-case"
           disabled={isLoading}
-          onClick={() =>
-            progress(WalletConnectConnector.connect().then(connect))
-          }
         >
           <img
             src={WalletConnectLogo}
@@ -63,6 +82,7 @@ export const ConnectWallet = () => {
         <button
           className="btn btn-outline justify-start gap-2 pr-12 normal-case"
           disabled={isLoading}
+          onClick={() => progress(connectBrowserWallet())}
         >
           <GlobeAltIcon className="aspect-square h-8" />
           BrowserWallet

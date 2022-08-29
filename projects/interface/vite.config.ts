@@ -10,9 +10,9 @@ export default defineConfig({
     },
   },
 
-  server: {
-    watch: {
-      usePolling: true, // for WSL
-    },
-  },
+  // server: {
+  //   watch: {
+  //     usePolling: true, // for WSL
+  //   },
+  // },
 });
