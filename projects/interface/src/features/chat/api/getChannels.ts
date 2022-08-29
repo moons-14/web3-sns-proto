@@ -13,7 +13,8 @@ export const getChannels = async (address: string) => {
   const snapshot = await getDocs(q);
   const channels: Channel[] = [];
   snapshot.forEach(
-    (doc) => doc.exists() && channels.push(doc.data() as Channel)
+    (doc) =>
+      doc.exists() && channels.push({ id: doc.id, ...doc.data() } as Channel)
   );
   return channels;
 };

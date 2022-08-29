@@ -46,7 +46,7 @@ export const SpinnerSuspense: React.FC<
   return (
     <Suspense
       fallback={
-        <div className="flex w-full items-center justify-center">
+        <div className="flex h-full w-full items-center justify-center">
           <Spinner size={size || "md"} />
         </div>
       }

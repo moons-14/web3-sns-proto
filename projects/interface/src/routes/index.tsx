@@ -18,6 +18,11 @@ const { SettingLayout } = lazyImport(
   "SettingLayout"
 );
 
+const { TextChatLayout } = lazyImport(
+  () => import("@/components/Layout/TextChatLayout"),
+  "TextChatLayout"
+);
+
 const { Wallet } = lazyImport(() => import("@/features/wallet"), "Wallet");
 
 const { Channels } = lazyImport(() => import("@/features/chat"), "Channels");
@@ -27,6 +32,8 @@ const { ProfileSetting } = lazyImport(
   "ProfileSetting"
 );
 
+const { TextChat } = lazyImport(() => import("@/features/chat"), "TextChat");
+
 export const AppRoutes = () => {
   return (
     <Routes>
@@ -35,6 +42,9 @@ export const AppRoutes = () => {
       </Route>
       <Route path="/setting" element={<SettingLayout />}>
         <Route path="/setting/profile" element={<ProfileSetting />} />
+      </Route>
+      <Route path="/chat" element={<TextChatLayout />}>
+        <Route path="/chat/:id" element={<TextChat />} />
       </Route>
       <Route path="/" element={<HomeLayout />}>
         <Route path="/" element={<Channels />} />

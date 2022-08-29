@@ -8,7 +8,7 @@ import { abbreviate } from "@/utils";
 
 export const ChannelList = () => {
   const channels = useRecoilValue(channelsSelector);
-
+  console.log(channels);
   if (channels.length === 0)
     return (
       <div className="mx-auto pt-4 text-2xl font-bold opacity-50">Empty</div>
@@ -18,7 +18,7 @@ export const ChannelList = () => {
     <div className="flex flex-col gap-2">
       {channels.map((channel, i) => (
         <Link
-          to="/"
+          to={`/chat/${channel.id}`}
           key={`${channel.name}_${i}`}
           className="active:bg-base-300 card h-16 cursor-pointer flex-row items-center gap-4 p-1 transition-all active:scale-95"
         >
