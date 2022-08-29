@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 
+import { ConnectWallet } from "@/features/auth";
 import { lazyImport } from "@/utils";
 
 const { HomeLayout } = lazyImport(
@@ -15,11 +16,6 @@ const { AuthLayout } = lazyImport(
 const { SettingLayout } = lazyImport(
   () => import("@/components/Layout/SettingLayout"),
   "SettingLayout"
-);
-
-const { ConnectWallet } = lazyImport(
-  () => import("@/features/auth"),
-  "ConnectWallet"
 );
 
 const { Wallet } = lazyImport(() => import("@/features/wallet"), "Wallet");
