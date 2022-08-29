@@ -41,8 +41,8 @@ export const TextChat = () => {
 
   return (
     <div className="flex h-full w-full flex-col">
-      <div className="navbar justify-between">
-        <div className="navbar-start">
+      <div className="flex h-16 items-center px-2">
+        <div className="navbar-start items-center">
           <button
             className="btn btn-ghost btn-square"
             onClick={() => navigate(-1)}
@@ -56,9 +56,15 @@ export const TextChat = () => {
       <div className="flex grow flex-col justify-end overflow-y-hidden">
         <MessageList channelId={id || ""} />
       </div>
-      <div className="w-full p-4 pt-0">
+      <div className="flex w-full items-center p-4 pt-0">
+        <button
+          className="btn btn-circle btn-ghost"
+          onClick={() => navigate(-1)}
+        >
+          <ArrowLeftIcon className="w-8" />
+        </button>
         <form
-          className="card bg-base-100 flex w-full flex-row items-center p-2"
+          className="card bg-base-100 flex grow flex-row items-center p-2"
           onSubmit={handleSubmit(onSubmit)}
         >
           <input
