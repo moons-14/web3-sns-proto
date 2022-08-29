@@ -14,12 +14,14 @@ export const sendMessage = async (
   message: MessageReq,
   connector: Connector
 ) => {
-  const address = await mustLogin(connector);
-  const channelRef = collection(db, "channels", channelId, "messages");
+  if (message.text.match(/\S/g)) {
+    const address = await mustLogin(connector);
+    const channelRef = collection(db, "channels", channelId, "messages");
 
-  await addDoc(channelRef, {
-    sender: address,
-    createdAt: serverTimestamp(),
-    ...message,
-  });
+    await addDoc(channelRef, {
+      sender: address,
+      createdAt: serverTimestamp(),
+      ...message,
+    });
+  }
 };
