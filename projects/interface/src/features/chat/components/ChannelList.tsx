@@ -19,7 +19,6 @@ const UserBadge: React.FC<{ address: string }> = ({ address }) => {
 
 export const ChannelList = () => {
   const channels = useRecoilValue(channelsSelector);
-  console.log(channels);
   if (channels.length === 0)
     return (
       <div className="mx-auto pt-4 text-2xl font-bold opacity-50">Empty</div>
